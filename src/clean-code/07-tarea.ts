@@ -12,20 +12,16 @@
         ) {}
     }
 
-    class InputAttributes extends HtmlElement {
+    class InputAttributes {
         constructor(
-            public value: string,
             public placeholder: string,
-            id: string,
-        ) {
-            super(id, 'input');
-        }
+            public value: string,
+        ) {}
     }
 
-    class InputEvents extends InputAttributes {
-        constructor( value: string, placeholder: string, id: string ) {
-            super( value, placeholder, id );
-        }
+    class InputEvents {
+        
+        constructor(){}
 
         setFocus() {};
         getValue() {};
@@ -35,8 +31,19 @@
 
 
     //? Idea para la nueva clase InputElement
+    class InputElement {
+        public html: HtmlElement;
+        public attributes: InputAttributes;
+        public events: InputEvents;
 
-    const nameField = new InputEvents('Fernando', 'Enter first name', 'txtName');
+        constructor( id: string , placeholder: string, value: string ) {
+            this.html = new HtmlElement( id, 'input' );
+            this.attributes = new InputAttributes( placeholder, value );
+            this.events = new InputEvents();
+        }
+    }
+
+    const nameField = new InputElement('txtName', 'Enter first name', 'Fernando');
 
     console.log({ nameField });
 
